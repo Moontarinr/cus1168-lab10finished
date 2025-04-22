@@ -11,12 +11,12 @@ public class Lab10 {
      */
     public static int factorial(int n) {
         // Base case: factorial of 1 is 1
-        // TODO: Implement the base case, if n is 0, return 1
-
         // Recursive case: n! = n * (n-1)!
-        // TODO: Implement the recursive case, return n * factorial(n - 1)
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
+ 
+            if (n == 0) return 1;
+            return n * factorial(n - 1);
+         
+      }
 
     /**
      * Exercise 2: Counting Ears
@@ -27,11 +27,11 @@ public class Lab10 {
      */
     public static int countEars(int n) {
         // Base case: no rabbits means no ears
-        // TODO: Implement the base case, if n is 0, return 0
+       // Recursive case: 2 ears for this rabbit + ears for the rest
 
-        // Recursive case: 2 ears for this rabbit + ears for the rest
-        // TODO: Implement the recursive case, return 2 + countEars(n - 1)
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (n == 0) return 0;
+        return 2 + countEars(n - 1);
+    
     }
 
     /**
@@ -43,12 +43,13 @@ public class Lab10 {
      */
     public static int fibonacci(int n) {
         // Base cases: first two numbers in the sequence
-        // TODO: Implement the base cases, if n is 0, return 0; if n is 1, return 1
-
         // Recursive case: sum of the previous two numbers
-        // TODO: Implement the recursive case, return fibonacci(n - 1) + fibonacci(n - 2)
-        throw new UnsupportedOperationException("Not implemented yet");
+       
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+        return fibonacci(n - 1) + fibonacci(n - 2);
     }
+
 
     // Level 2: Recursive Number Processing
 
@@ -62,13 +63,17 @@ public class Lab10 {
      */
     public static int specialEars(int n) {
         // Base case: no rabbits means no ears
-        // TODO: Implement the base case, if n is 0, return 0
-
         // Recursive case with pattern: odd rabbits (2 ears), even rabbits (3 ears)
-        // TODO: If n is odd, return 2 + specialEars(n - 1);
-        // TODO: Otherwise, return 3 + specialEars(n - 1);
 
-        throw new UnsupportedOperationException("Not implemented yet");
+            if (n == 0) return 0;
+            if (n % 2 == 0) {
+                return 3 + specialEars(n - 1);
+            } else {
+                return 2 + specialEars(n - 1);
+            }
+        
+    
+        
     }
 
     /**
@@ -80,11 +85,11 @@ public class Lab10 {
      */
     public static int triangleBlocks(int n) {
         // Base case: no rows means no blocks
-        // TODO: Implement the base case, if n is 0, return 0
+       // Recursive case: blocks in this row + blocks in the rows above
+        
+        if (n == 0) return 0;
+        return n + triangleBlocks(n - 1);
 
-        // Recursive case: blocks in this row + blocks in the rows above
-        // TODO: Implement the recursive case, return n + triangleBlocks(n - 1)
-        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
@@ -96,11 +101,13 @@ public class Lab10 {
      */
     public static int sumDigits(int n) {
         // Base case: single digit number
-        // TODO: Implement the base case, if n is less than 10, return n
-
         // Recursive case: rightmost digit + sum of the rest
-        // TODO: Implement the recursive case, return (n % 10) + sumDigits(n / 10)
-        throw new UnsupportedOperationException("Not implemented yet");
+    
+        if (n < 10) return n;
+        return (n % 10) + sumDigits(n / 10);
+
+
+
     }
 
     // Level 3: Digit Counting Recursively
@@ -114,13 +121,15 @@ public class Lab10 {
      */
     public static int countSevens(int n) {
         // Base case: no more digits
-        // TODO: Implement the base case, if n is 0, return 0
-
         // Check if rightmost digit is 7
-        // TODO: If n % 10 == 7, return 1 + countSevens(n / 10);
 
-        // TODO: Otherwise, return countSevens(n / 10);
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (n == 0) return 0;
+        if (n % 10 == 7) {
+            return 1 + countSevens(n / 10);
+        } else {
+            return countSevens(n / 10);
+        }
+
     }
 
     /**
@@ -131,23 +140,25 @@ public class Lab10 {
      * @return Weighted count of digit 8
      */
     public static int countEights(int n) {
-        // Base case: no more digits
-        // TODO: Implement the base case, if n is 0, return 0
+    // Base case: no more digits
+    // Get the rightmost and second-rightmost digits
+    // Check special case: 8 preceded by another 8
+    // Normal case: just a regular 8
+    // No 8 in the rightmost position
+        
+       
+       if (n == 0) return 0;
+        int rightDigit = n % 10;
+        int secondRightDigit = (n / 10) % 10;
 
-        // Get the rightmost and second-rightmost digits
-        // TODO: Create variables rightDigit and secondRightDigit
-        // TODO: Assign rightDigit to n % 10
-        // TODO: Assign secondRightDigit to (n / 10) % 10
+        if (rightDigit == 8 && secondRightDigit == 8) {
+            return 2 + countEights(n / 10);
+        } else if (rightDigit == 8) {
+            return 1 + countEights(n / 10);
+        } else {
+            return countEights(n / 10);
+        }
 
-        // Check special case: 8 preceded by another 8
-        // TODO: If rightDigit == 8 and secondRightDigit == 8, return 2 + countEights(n / 10);
-
-        // Normal case: just a regular 8
-        // TODO: If rightDigit == 8, return 1 + countEights(n / 10);
-
-        // No 8 in the rightmost position
-        // TODO: Otherwise, return countEights(n / 10);
-        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     // Level 4: String Recursion Basics
@@ -161,14 +172,15 @@ public class Lab10 {
      */
     public static int countHi(String str) {
         // Base case: string too short to contain "hi"
-        // TODO: Implement the base case, if str.length() < 2, return 0
-
         // Check if the first two characters are "hi"
-        // TODO: If str.startsWith("hi"), return 1 + countHi(str.substring(2));
 
-        // TODO: Otherwise, check the next character by calling countHi(str.substring(1));
+        if (str.length() < 2) return 0;
+        if (str.startsWith("hi")) {
+            return 1 + countHi(str.substring(2));
+        } else {
+            return countHi(str.substring(1));
+        }
 
-        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
@@ -179,15 +191,16 @@ public class Lab10 {
      * @return String with 'x' replaced by 'y'
      */
     public static String replaceChar(String str) {
-        // Base case: empty string
-        // TODO: Implement the base case, if str.length() == 0, return ""
+    // Base case: empty string
+    // Replace 'x' with 'y' if first character is 'x'
+    
+        if (str.length() == 0) return "";
+        if (str.charAt(0) == 'x') {
+            return "y" + replaceChar(str.substring(1));
+        } else {
+            return str.charAt(0) + replaceChar(str.substring(1));
+        }
 
-        // Replace 'x' with 'y' if first character is 'x'
-        // TODO: If str.charAt(0) == 'x', return "y" + replaceChar(str.substring(1));
-
-        // TODO: Otherwise, return str.charAt(0) + replaceChar(str.substring(1));
-
-        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
@@ -199,13 +212,17 @@ public class Lab10 {
      */
     public static String removeChar(String str) {
         // Base case: empty string
-        // TODO: Implement the base case, if str.length() == 0, return ""
-
         // Skip 'x' characters
-        // TODO: If str.charAt(0) == 'x', return removeChar(str.substring(1));
 
-        // TODO: Otherwise, return str.charAt(0) + removeChar(str.substring(1));
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (str.length() == 0) return "";
+        if (str.charAt(0) == 'x') {
+            return removeChar(str.substring(1));
+        } else {
+            return str.charAt(0) + removeChar(str.substring(1));
+        }
+
+
+
     }
 
     // Level 5: Advanced String Recursion
@@ -219,13 +236,15 @@ public class Lab10 {
      */
     public static String markPairs(String str) {
         // Base case: single character or empty string
-        // TODO: Implement the base case, if str.length() <= 1, return str
-
         // Check if first and second characters are identical
-        // TODO: If str.charAt(0) == str.charAt(1), return str.charAt(0) + "*" + markPairs(str.substring(1));
 
-        // TODO: Otherwise, return str.charAt(0) + markPairs(str.substring(1));
-        throw new UnsupportedOperationException("Not implemented yet");
+
+            if (str.length() <= 1) return str;
+            if (str.charAt(0) == str.charAt(1)) {
+                return str.charAt(0) + "*" + markPairs(str.substring(1));
+            } else {
+                return str.charAt(0) + markPairs(str.substring(1));
+            }
 
     }
 
@@ -238,13 +257,17 @@ public class Lab10 {
      */
     public static String deduplicate(String str) {
         // Base case: single character or empty string
-        // TODO: Implement the base case, if str.length() == 0, return ""
-
         // Remove duplicate adjacent characters
-        // TODO: If str.charAt(0) == str.charAt(1), return deduplicate(str.substring(1));
+       
+       if (str.length() == 0) return "";
+        if (str.length() == 1) return str;
 
-        // TODO: Otherwise, return str.charAt(0) + deduplicate(str.substring(1));
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (str.charAt(0) == str.charAt(1)) {
+            return deduplicate(str.substring(1));
+        } else {
+            return str.charAt(0) + deduplicate(str.substring(1));
+        }
+
     }
 
     // Level 6: Complex Recursive Problems
@@ -258,16 +281,17 @@ public class Lab10 {
      */
     public static int countHiSpecial(String str) {
         // Base case: string too short to contain "hi"
-        // TODO: Implement the base case, if str.length() < 2, return 0
-
         // Check for "hi" at the beginning
-        // TODO: If str.startsWith("hi"), return 1 + countHiSpecial(str.substring(2));
-
         // Check for "xhi" pattern (need to check if we have enough characters)
-        // TODO: If str.length() >= 3 && str.charAt(0) == 'x' && str.startsWith("hi", 1), return countHiSpecial(str.substring(3));
 
-        // TODO: Otherwise, return countHiSpecial(str.substring(1));
-        throw new UnsupportedOperationException("Not implemented yet");
+       if (str.length() < 2) return 0;
+        if (str.length() >= 3 && str.charAt(0) == 'x' && str.startsWith("hi", 1)) {
+            return countHiSpecial(str.substring(3));
+        } else if (str.startsWith("hi")) {
+            return 1 + countHiSpecial(str.substring(2));
+        } else {
+            return countHiSpecial(str.substring(1));
+        }
     }
 
     /**
@@ -279,25 +303,26 @@ public class Lab10 {
      * @return Length of largest substring
      */
     public static int substringLength(String str, String sub) {
-        // Base case: string is shorter than the substring
-        // TODO: Implement the base case, if str.length() < sub.length(), return 0
+    // Base case: string is shorter than the substring
+    // Check if string starts and ends with the substring
+    // Try removing first character
+    // Try removing last character
+    // Return the larger result
+        
+         
+        if (str.length() < sub.length()) return 0;
 
-        // Check if string starts and ends with the substring
-        // TODO: Create boolean variables startsWith and endsWith
-        // TODO: Assign startsWith to str.startsWith(sub)
-        // TODO: Assign endsWith to str.endsWith(sub)
+        boolean startsWith = str.startsWith(sub);
+        boolean endsWith = str.endsWith(sub);
 
-        // TODO: If both are true, return str.length()
+        if (startsWith && endsWith) return str.length();
 
-        // Try removing first character
-        // TODO: Create a variable removeFirst and assign it to substringLength(str.substring(1), sub)
+        int removeFirst = substringLength(str.substring(1), sub);
+        int removeLast = substringLength(str.substring(0, str.length() - 1), sub);
 
-        // Try removing last character
-        // TODO: Create a variable removeLast and assign it to substringLength(str.substring(0, str.length() - 1), sub)
+        return Math.max(removeFirst, removeLast);
+    
 
-        // Return the larger result
-        // TODO: Return the maximum of removeFirst and removeLast
-        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
@@ -311,17 +336,19 @@ public class Lab10 {
      */
     public static void towerOfHanoi(int n, char source, char auxiliary, char target) {
         // Base case: only one disk to move
-        // TODO: Implement the base case, if n is 1, print Move disk 1 from source to target
-
         // Move n-1 disks from source to auxiliary using target as temporary
-        // TODO: Call towerOfHanoi(n - 1, source, target, auxiliary);
-
         // Move the nth disk from source to target
-        // TODO: Print Move disk n from source to target
-
         // Move n-1 disks from auxiliary to target using source as temporary
-        // TODO: Call towerOfHanoi(n - 1, auxiliary, source, target);
-        throw new UnsupportedOperationException("Not implemented yet");
+        
+        if (n == 1) {
+            System.out.println("Move disk 1 from " + source + " to " + target);
+            return;
+        }
+
+        towerOfHanoi(n - 1, source, target, auxiliary);
+        System.out.println("Move disk " + n + " from " + source + " to " + target);
+        towerOfHanoi(n - 1, auxiliary, source, target);
+    
     }
 
     // Main method with test cases
